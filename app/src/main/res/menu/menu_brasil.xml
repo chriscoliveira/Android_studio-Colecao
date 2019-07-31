@@ -1,0 +1,36 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+
+    <item android:id="@+id/menu_Est"
+        android:title="Estrangeira"
+        ></item>
+    <item android:id="@+id/menu_Nac"
+        android:title="Nacional"
+        ></item>
+    <item android:id="@+id/menu_AnoAZ" 
+        android:title="Organizar por Ano AZ" 
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+    <item android:id="@+id/menu_AnoZA" 
+        android:title="Organizar por Ano ZA" 
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+    <item android:id="@+id/menu_Por_Moeda_az" 
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Und. Monet."></item>
+    <item android:id="@+id/menu_ID_AZ" 
+        android:title="Organizar por ID AZ" 
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+    <item android:id="@+id/menu_ID_ZA" 
+        android:title="Organizar por ID ZA" 
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+    <item android:id="@+id/menu_Material"
+        android:title="Organizar por Material"
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+    <item android:id="@+id/menu_Diametro"
+        android:title="Organizar por Tamanho"
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+    <item android:id="@+id/menu_Krause"
+        android:title="Organizar por Catalogo"
+        android:icon="@drawable/ic_filter_list_black_24dp"></item>
+
+</menu>

@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+         <item android:id="@+id/menu_voltar" android:title="Voltar" android:orderInCategory="1"/>
+         <item android:id="@+id/menu_cadastrar" android:orderInCategory="0" android:showAsAction="never" android:title="Adicionar" />
+	     <item android:id="@+id/ordenar_pais" android:title="Pais" android:orderInCategory="2"/>
+	     <item android:id="@+id/ordenar_ano" android:title="Ano" android:orderInCategory="3"/>
+	     <item android:id="@+id/ordenar_qtde" android:title="Quantidade" android:orderInCategory="4"/>
+         <item android:id="@+id/ordenar_unidademonetaria" android:title="Moeda" android:orderInCategory="5"/>
+</menu>

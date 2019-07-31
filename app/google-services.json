@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "275801323997",
+    "firebase_url": "https://minha-colecao-a01d5.firebaseio.com",
+    "project_id": "minha-colecao-a01d5",
+    "storage_bucket": "minha-colecao-a01d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275801323997:android:f901884a327a9740",
+        "android_client_info": {
+          "package_name": "com.gmail.coliveira.christian.colecao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275801323997-ip5870v51o6eumtisjf9kljp2hfojae1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.coliveira.christian.colecao",
+            "certificate_hash": "d68a54a791c36fae5995b07cffaa5b29d6f5101b"
+          }
+        },
+        {
+          "client_id": "275801323997-lspa9v14a1bf3nuv9u8bc47glcf1n5jj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAyILnd_yFmp0BNYVSChHxCmifbAqgZWs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275801323997-lspa9v14a1bf3nuv9u8bc47glcf1n5jj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

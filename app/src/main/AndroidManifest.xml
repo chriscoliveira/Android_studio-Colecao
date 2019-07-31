@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.gmail.coliveira.christian.colecao">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ico2019"
+        android:label="@string/appname"
+        android:roundIcon="@drawable/ico2019"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".moedasenotas.ColecaoCompleta"
+            android:label="@string/colecao_completa"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".moedasenotas.Moedas"
+            android:label="@string/Moedas_Estrangeiras"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".moedasenotas.MoedasBr"
+            android:label="@string/moedas_brasileira"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Relatorios"
+            android:label="@string/relatorios"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".moedasenotas.Notas"
+            android:label="@string/Notas"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".moedasenotas.NotasBr"
+            android:label="@string/notas_brasileiras"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TPesquisa"
+            android:label="@string/pesquisar"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TOpcoes"
+            android:label="@string/opcoes"
+            android:parentActivityName=".Inicio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".moedasenotas.PaisSelecionado"
+            android:parentActivityName=".moedasenotas.ColecaoCompleta"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inicio"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.gmail.coliveira.christian.colecao"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity android:name=".CarregaSistema" />
+        <activity android:name=".login.CadastroActivity" />
+        <activity android:name=".Exportar"></activity>
+
+
+
+
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+         See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_monetization_on_black_24dp" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+    </application>
+
+</manifest>

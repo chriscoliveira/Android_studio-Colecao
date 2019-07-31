@@ -1,0 +1,273 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="3dp">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                android:id="@+id/etPais"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_globo"
+                android:hint="@string/pais"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/etAno"
+                android:singleLine="true"
+                android:text="">
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+            <EditText
+                android:id="@+id/etAno"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/ano"
+                android:inputType="numberSigned"
+                android:nextFocusDown="@+id/etKrause"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etKrause"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/krause"
+                android:inputType="textCapCharacters|textVisiblePassword"
+
+                android:nextFocusDown="@+id/etTipo"
+                android:singleLine="true"
+                android:text=""
+                android:autofillHints="" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etTipo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/tipo"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords|textAutoComplete"
+                android:nextFocusDown="@+id/etValor"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etValor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:hint="@string/valor"
+                android:inputType="textVisiblePassword|textCapCharacters"
+                android:nextFocusDown="@+id/etMoeda"
+                android:singleLine="true"
+                android:text="" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etMoeda"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/moeda"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters|textAutoComplete"
+                android:nextFocusDown="@+id/etMaterial"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                android:id="@+id/etMaterial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/material"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters|textAutoComplete"
+                android:nextFocusDown="@+id/etDiametro"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etDiametro"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/diametro"
+                android:inputType="textVisiblePassword|textCapCharacters"
+                android:nextFocusDown="@+id/etQualidade"
+                android:autofillHints=""
+                android:singleLine="true"
+                android:text="" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etQualidade"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/qualidade"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters"
+                android:nextFocusDown="@+id/etAnverso"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etAnverso"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:hint="@string/anverso"
+                android:inputType="textCapCharacters|textAutoComplete"
+                android:nextFocusDown="@+id/etReverso"
+                android:singleLine="true"
+                android:text="" />
+
+            <EditText
+                android:id="@+id/etReverso"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/reverso"
+                android:inputType="textCapCharacters|textAutoComplete"
+                android:nextFocusDown="@+id/etDetalhe"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etDetalhe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/detalhe"
+                android:autofillHints=""
+                android:inputType="textVisiblePassword|textCapCharacters"
+                android:nextFocusDown="@+id/btGravarMoeda"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:autofillHints=""
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tv_datacadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:autofillHints=""
+                android:text="" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btGravarMoeda"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:textColor="@color/notanacional"
+                android:drawableLeft="@drawable/ic_save" />
+
+            <Button
+                android:id="@+id/btApagar"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="@string/apaga"
+                android:drawableLeft="@drawable/ic_delete"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btFechar"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:textColor="@color/preto"
+                android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+                android:text="@string/fechar" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

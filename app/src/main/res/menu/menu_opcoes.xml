@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+    <item android:id="@+id/euro" 
+        android:title="Identificar Euro"
+        android:icon="@drawable/ic_euro_symbol_black_24dp"
+        android:showAsAction="always">
+   <menu>
+    <item android:id="@+id/menu_moedas_euro1" 
+        android:title="Identificar Euro 1"
+        android:icon="@drawable/ic_euro_symbol_black_24dp"></item>
+    <item android:id="@+id/menu_moedas_euro2" 
+        android:title="Identificar Euro 2"
+        android:icon="@drawable/ic_euro_symbol_black_24dp"></item>
+    <item android:id="@+id/menu_moedas_euro3" 
+        android:title="Identificar Euro 3"
+        android:icon="@drawable/ic_euro_symbol_black_24dp"></item>
+    <item android:id="@+id/menu_moedas_euro4" 
+        android:title="Euro 4"
+        android:icon="@drawable/ic_euro_symbol_black_24dp"></item>
+    <item android:id="@+id/menu_locais_euro" 
+        android:title="Cunhagem Euro" ></item>
+    </menu>
+    </item>
+    
+    <item android:id="@+id/menu_moedas_japao" 
+        android:title="Datas Japao" 
+        android:icon="@drawable/japa"
+        android:showAsAction="always"></item>
+    <item android:id="@+id/menu_simbolos_moedas" 
+        android:title="Simbolos Moedas"
+        android:icon="@drawable/ic_help_black_24dp"
+        android:showAsAction="always" 
+        >
+   <menu>
+	    <item android:id="@+id/menu_simbolos_moedas1" 
+	        android:title="Simbolos Moedas 1" 
+	        ></item>
+	    <item android:id="@+id/menu_simbolos_moedas2" 
+	        android:title="Simbolos Moedas 2" 
+	        ></item>
+		<item android:id="@+id/menu_simbolos_moedas3" 
+	        android:title="Simbolos Moedas 3" 
+	        ></item>
+	    <item android:id="@+id/menu_simbolos_moedas4" 
+	        android:title="Simbolos Moedas 4" 
+	        ></item>
+    </menu></item>
+</menu>

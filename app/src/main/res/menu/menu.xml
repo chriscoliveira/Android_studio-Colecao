@@ -1,0 +1,65 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_Adcionar"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:showAsAction="ifRoom"
+        android:title="Adcionar">
+    </item>
+    <item android:id="@+id/menu_VoltarPagina"
+        android:title="Adcionar"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_back_black_24dp"></item>
+    <item android:id="@+id/menu_Est"
+        android:title="Estrangeira"
+        ></item>
+    <item android:id="@+id/menu_Nac"
+        android:title="Nacional"
+        ></item>
+    <item
+        android:id="@+id/menu_Ano"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Ano">
+    </item>
+    <item
+        android:id="@+id/menu_Pais"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Pais">
+    </item>
+    <item
+        android:id="@+id/menu_Por_Moeda"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Und. Monet.">
+    </item>
+    <item
+        android:id="@+id/menu_ID"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por ID">
+    </item>
+    <item
+        android:id="@+id/menu_Material"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Material">
+    </item>
+    <item
+        android:id="@+id/menu_Diametro"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Diametro">
+    </item>
+    <item
+        android:id="@+id/menu_Valor"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Valor">
+    </item>
+    <item
+        android:id="@+id/menu_Krause"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Catalogo">
+    </item>
+    <item
+        android:id="@+id/menu_Tipo"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Organizar por Tipo">
+    </item>
+
+</menu>

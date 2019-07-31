@@ -1,0 +1,11 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+
+    <item android:id="@+id/menu_qtepais"
+        android:title="Qtde por País"
+        ></item>
+    <item android:id="@+id/menu_ultcadas"
+        android:title="Ultimos cadastrados"
+        ></item>
+</menu>

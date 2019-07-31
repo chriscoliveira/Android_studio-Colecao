@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/nav_inicio"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Resumo" />
+    <item
+        android:id="@+id/nav_pesquisa"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Pesquisa" />
+    <item
+        android:id="@+id/nav_novo"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:title="Cadastrar" />
+
+
+    <item android:title="Coleção">
+        <menu>
+
+            <item
+                android:id="@+id/nav_moedanac"
+                android:icon="@drawable/icons8_coins_24"
+                android:title="Moedas Brasil"
+                />
+            <item
+                android:id="@+id/nav_notanac"
+                android:icon="@drawable/icons8_money_24"
+                android:title="Notas Brasil" />
+            <item
+                android:id="@+id/nav_moedaint"
+                android:icon="@drawable/icons8_coins_24"
+                android:title="Moedas Internacionais" />
+            <item
+                android:id="@+id/nav_notaint"
+                android:icon="@drawable/icons8_money_24"
+                android:title="Notas Internacionais" />
+            <item
+                android:id="@+id/nav_colecao"
+                android:icon="@drawable/icons8_globe_24"
+                android:title="Coleção Completa" />
+
+        </menu>
+    </item>
+    <menu>
+        <item
+            android:id="@+id/nav_relatorios"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Ultimos Adicionados" />
+    </menu>
+    <item android:title="Ajuda">
+        <menu>
+            <item
+                android:id="@+id/nav_euro"
+                android:icon="@drawable/ic_euro_symbol_black_24dp"
+                android:title="@string/LocaisdeCunhagemEuro" />
+            <item
+                android:id="@+id/nav_euro1"
+                android:icon="@drawable/ic_euro_symbol_black_24dp"
+                android:title="Identificar Euros 1" />
+            <item
+                android:id="@+id/nav_euro2"
+                android:icon="@drawable/ic_euro_symbol_black_24dp"
+                android:title="Identificar Euros 2" />
+            <item
+                android:id="@+id/nav_euro3"
+                android:icon="@drawable/ic_euro_symbol_black_24dp"
+                android:title="Identificar Euros 3" />
+            <item
+                android:id="@+id/nav_euro4"
+                android:icon="@drawable/ic_euro_symbol_black_24dp"
+                android:title="Identificar Euros 4" />
+            <item
+                android:id="@+id/nav_datas"
+                android:icon="@drawable/ic_today_black_24dp"
+                android:title="Conversor de datas" />
+            <item
+                android:id="@+id/nav_simbolos"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="Símbolos 1" />
+            <item
+                android:id="@+id/nav_simbolos1"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="Símbolos 2" />
+            <item
+                android:id="@+id/nav_numeracao"
+                android:icon="@drawable/ic_looks_one_black_24dp"
+                android:title="Numeração Mundial" />
+        </menu>
+    </item>
+
+
+
+    <item android:title="Ferramentas">
+        <menu>
+            <item
+                android:id="@+id/nav_option"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Exportar/Importar" />
+
+        </menu>
+    </item>
+
+
+
+    <item android:title="Sair">
+        <menu>
+            <item
+                android:id="@+id/nav_sair"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:title="Sair" />
+
+        </menu>
+    </item>
+</menu>

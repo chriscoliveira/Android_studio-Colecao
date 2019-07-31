@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#002696</color>
+    <color name="colorPrimaryDark">#001969</color>
+    <color name="colorAccent">#ffcc0000</color>
+
+
+    <color name="colorPrimary1">#3F51B5</color>
+    <color name="colorPrimaryDark1">#1A237E</color>
+    <color name="colorAccent1">#FF5722</color>
+    <color name="branco">#ffffff</color>
+    <color name="moedanacional">#f9cb02</color>
+    <color name="notanacional">#04560e</color>
+    <color name="moedaestrangeira">#003bb1</color>
+    <color name="notaestrangeira">#af3b01</color>
+    <color name="preto">#000000</color>
+
+</resources>

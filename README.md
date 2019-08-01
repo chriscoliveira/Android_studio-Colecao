@@ -32,8 +32,8 @@ Atualizado em 30/07/2019
 
 <h1>Tela de configuração</h1>
 <img src="https://user-images.githubusercontent.com/9967935/62308379-9cf77f00-b45b-11e9-8700-2c3d6d1f8953.png">
-# Markdown
-* Importar dados previamente salvos na nuvem do firebase
-* Exporta os dados salvos do aplicativo na nuvem do firebase e envia um email com os dados em formato SQL
-* Limpa o banco de dados do aplicativo
-<img src="https://user-images.githubusercontent.com/9967935/62308385-9f59d900-b45b-11e9-84aa-a82402353ea4.png">
+<ul>
+  <li> Importar dados previamente salvos na nuvem do firebase</li>
+<li> Exporta os dados salvos do aplicativo na nuvem do firebase e envia um email com os dados em formato SQL</li>
+<li> Limpa o banco de dados do aplicativo</li>
+</ul>

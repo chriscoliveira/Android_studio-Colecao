@@ -55,7 +55,6 @@ public class TOpcoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opcoes);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,15 +67,16 @@ public class TOpcoes extends AppCompatActivity {
         Button btExportar = findViewById(R.id.btExportar);
 
         Button btImportar = findViewById(R.id.btImportar);
+        Button btImportarManual = findViewById(R.id.btImportarManual);
 
 
         btImportar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            //importa da nuvem
+                //importa da nuvem
 
                 storage = FirebaseStorage.getInstance();
                 storageReference = storage.getReference();
-                String userId= UsuarioFirebase.getIdUser();
+                String userId = UsuarioFirebase.getIdUser();
 
                 final String filename4 = "bancoMoedas.txt";
                 final String filename1 = "resumoColecao.txt";
@@ -158,7 +158,6 @@ public class TOpcoes extends AppCompatActivity {
                                 })
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
-
                         //fim da importacao do SQLite
 
                     }
@@ -166,14 +165,66 @@ public class TOpcoes extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         Toast.makeText(TOpcoes.this, "Erro ao baixar o arquivo : " + localFile4.toString(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
 
-            //fim da importacao nuvem
+                //fim da importacao nuvem
 
             }
         });
+
+        btImportarManual.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //importa para o SQLite
+                final String filename4 = "bancoMoedas.txt";
+                final String filename1 = "resumoColecao.txt";
+                File sdcard = Environment.getExternalStorageDirectory();
+                File file = new File(sdcard, "/Download/resumoColecao.txt");
+                BufferedReader br = null;
+                String line;
+                String sql = "\n";
+                try {
+                    br = new BufferedReader(new FileReader(file));
+
+                    while ((line = br.readLine()) != null) {
+                        sql += line + " \n";
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(TOpcoes.this, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(TOpcoes.this);
+                }
+                builder.setTitle("Importar registros")
+                        .setMessage(sql + "\nTem certeza que deseja importar Registros para o banco?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                zinfodb.importarLista(TOpcoes.this);
+                                startActivity(new Intent(TOpcoes.this, Inicio.class));
+                                TOpcoes.this.finish();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                                startActivity(new Intent(TOpcoes.this, Inicio.class));
+                                TOpcoes.this.finish();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+                //fim da importacao do SQLite
+
+            }
+
+        });
+
         btExportar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(TOpcoes.this, Exportar.class));

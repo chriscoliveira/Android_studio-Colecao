@@ -23,6 +23,23 @@
     </android.support.design.widget.AppBarLayout>
 
     <Button
+        android:id="@+id/btImportarManual"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:drawableLeft="@drawable/ic_import_export_black_24dp"
+        android:text="Importar Local"
+
+        app:layout_constraintBottom_toTopOf="@+id/btExportar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <Button
         android:id="@+id/btImportar"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
@@ -32,12 +49,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:drawableLeft="@drawable/ic_import_export_black_24dp"
-        android:text="Importar"
+        android:text="Importar Cloud"
 
         app:layout_constraintBottom_toTopOf="@+id/btExportar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/btImportarManual" />
 
     <Button
         android:id="@+id/btExportar"

@@ -42,7 +42,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[1fbb84bd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -337,22 +337,22 @@
       <screen x="33" y="0" width="1887" height="1080" />
     </state>
     <state x="673" y="148" width="602" height="784" key="#app/33.0.1887.1080@33.0.1887.1080" timestamp="1615389281323" />
-    <state width="1845" height="290" key="GridCell.Tab.0.bottom" timestamp="1615390081959">
+    <state width="1845" height="290" key="GridCell.Tab.0.bottom" timestamp="1615399992557">
       <screen x="33" y="0" width="1887" height="1080" />
     </state>
-    <state width="1845" height="290" key="GridCell.Tab.0.bottom/33.0.1887.1080@33.0.1887.1080" timestamp="1615390081959" />
-    <state width="1845" height="290" key="GridCell.Tab.0.center" timestamp="1615390081958">
+    <state width="1845" height="290" key="GridCell.Tab.0.bottom/33.0.1887.1080@33.0.1887.1080" timestamp="1615399992557" />
+    <state width="1845" height="290" key="GridCell.Tab.0.center" timestamp="1615399992557">
       <screen x="33" y="0" width="1887" height="1080" />
     </state>
-    <state width="1845" height="290" key="GridCell.Tab.0.center/33.0.1887.1080@33.0.1887.1080" timestamp="1615390081958" />
-    <state width="1845" height="290" key="GridCell.Tab.0.left" timestamp="1615390081958">
+    <state width="1845" height="290" key="GridCell.Tab.0.center/33.0.1887.1080@33.0.1887.1080" timestamp="1615399992557" />
+    <state width="1845" height="290" key="GridCell.Tab.0.left" timestamp="1615399992556">
       <screen x="33" y="0" width="1887" height="1080" />
     </state>
-    <state width="1845" height="290" key="GridCell.Tab.0.left/33.0.1887.1080@33.0.1887.1080" timestamp="1615390081958" />
-    <state width="1845" height="290" key="GridCell.Tab.0.right" timestamp="1615390081959">
+    <state width="1845" height="290" key="GridCell.Tab.0.left/33.0.1887.1080@33.0.1887.1080" timestamp="1615399992556" />
+    <state width="1845" height="290" key="GridCell.Tab.0.right" timestamp="1615399992557">
       <screen x="33" y="0" width="1887" height="1080" />
     </state>
-    <state width="1845" height="290" key="GridCell.Tab.0.right/33.0.1887.1080@33.0.1887.1080" timestamp="1615390081959" />
+    <state width="1845" height="290" key="GridCell.Tab.0.right/33.0.1887.1080@33.0.1887.1080" timestamp="1615399992557" />
     <state x="480" y="176" key="SettingsEditor" timestamp="1615389492678">
       <screen x="33" y="0" width="1887" height="1080" />
     </state>

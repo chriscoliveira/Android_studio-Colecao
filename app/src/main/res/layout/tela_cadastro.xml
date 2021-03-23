@@ -122,6 +122,17 @@
                 android:nextFocusDown="@+id/etDiametro"
                 android:singleLine="true"
                 android:text="" />
+            <AutoCompleteTextView
+                android:id="@+id/etVenda"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/venda"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine|textCapCharacters|textAutoComplete"
+                android:nextFocusDown="@+id/etDiametro"
+                android:singleLine="true"
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout

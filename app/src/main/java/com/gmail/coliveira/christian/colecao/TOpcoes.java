@@ -246,8 +246,8 @@ public class TOpcoes extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 zinfodb.deletar(TOpcoes.this);
 
-                                startActivity(new Intent(TOpcoes.this, Inicio.class));
-                                TOpcoes.this.finish();
+                                //startActivity(new Intent(TOpcoes.this, Inicio.class));
+                                //TOpcoes.this.finish();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

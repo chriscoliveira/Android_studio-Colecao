@@ -47,10 +47,12 @@ import com.gmail.coliveira.christian.colecao.services.Notificacao;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.gmail.coliveira.christian.colecao.ZInfoDB.NOME_TABELA;
+import static com.gmail.coliveira.christian.colecao.ZInfoDB.VALOR_VENDA;
 
 public class Inicio extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -356,7 +358,13 @@ public class Inicio extends AppCompatActivity
         } else if (horaFormatada >= 6 && horaFormatada < 12) {
             saudacao = "Bom dia! \n\n\n";
         }
-
+        Double valor_total = 0.0;
+        cursor = zinfodb.bancoDados.query(NOME_TABELA, null, null, null, null, null, null);
+        while (cursor.moveToNext()){
+            valor_total = valor_total + cursor.getFloat(cursor.getColumnIndex(VALOR_VENDA));
+        }
+        String svalor_total ="";
+        svalor_total = new DecimalFormat("#,##0.00").format(valor_total);
 
         Resumo = "";
         Resumo = saudacao;
@@ -373,7 +381,8 @@ public class Inicio extends AppCompatActivity
         Resumo = Resumo + "Notas Total = " + cont1 + "   \n";
         Resumo = Resumo + "Moedas Total = " + cont4 + "   \n";
         Integer total = cont1 + cont4;
-        Resumo = Resumo + "Colecao Total = " + total + "   \n";
+        Resumo = Resumo + "Colecao Total = " + total + "   \n\n";
+        Resumo = Resumo + "Valor Total = R$ " + svalor_total+"   \n";
 
         tvColecao.setText(Resumo);
     }

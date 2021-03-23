@@ -38,6 +38,7 @@
     <string name="valor">VALOR</string>
     <string name="moeda">MOEDA</string>
     <string name="material">MATERIAL</string>
+    <string name="venda">$ VENDA</string>
     <string name="diametro">TAMANHO</string>
     <string name="cadastro">DATA</string>
     <string name="id">ID</string>

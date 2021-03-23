@@ -154,6 +154,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/reverso"
                     android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tvVenda"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/venda"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <ListView

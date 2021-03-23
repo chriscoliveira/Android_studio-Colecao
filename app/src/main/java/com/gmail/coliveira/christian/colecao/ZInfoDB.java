@@ -71,6 +71,7 @@ public class ZInfoDB {
     public static String DETALHE = "detalhe";
     public static String TIPO = "tipo";
     public static String QUALIDADE = "qualidade";
+    public static String VALOR_VENDA = "valor_venda";
     public static String DATACADASTRO = "datacadastro";
     public ZUtilitarios zutilitarios = new ZUtilitarios();
     public Dialog dialog = null;
@@ -89,7 +90,7 @@ public class ZInfoDB {
         String criaTabela = "CREATE TABLE IF NOT EXISTS " + NOME_TABELA + "(" + ID + " INTEGER PRIMARY KEY, " + PAIS
                 + " TEXT, " + ANO + " INTEGER, " + KRAUSE + " TEXT," + VALOR + " TEXT, " + MOEDA + " TEXT," + TIPO
                 + " TEXT," + QUALIDADE + " TEXT," + MATERIAL + " TEXT," + DIAMETRO + " TEXT," + DETALHE + " TEXT,"
-                + ANVERSO + " TEXT," + REVERSO + " TEXT," + DATACADASTRO + " TEXT" + ")";
+                + ANVERSO + " TEXT," + REVERSO + " TEXT," + VALOR_VENDA + " REAL," + DATACADASTRO + " TEXT" + ")";
 
         String criaTabelaModificao = "CREATE TABLE IF NOT EXISTS "+BANCO_MOD+"("+MODIFICA+" TXT)";
 
@@ -154,6 +155,7 @@ public class ZInfoDB {
         final EditText etDetalhe = dialog.findViewById(R.id.etDetalhe);
         final EditText etAnverso = dialog.findViewById(R.id.etAnverso);
         final EditText etReverso = dialog.findViewById(R.id.etReverso);
+        final EditText etVenda = dialog.findViewById(R.id.etVenda);
 
         etPais.setAdapter(adapterPais);
         etTipo.setAdapter(adapterTipo);
@@ -196,7 +198,7 @@ public class ZInfoDB {
                             etTipo.getText().toString(), etQualidade.getText().toString().toUpperCase(),
                             etMaterial.getText().toString().toUpperCase(), etDiametro.getText().toString().toUpperCase(),
                             etDetalhe.getText().toString().toUpperCase(), etAnverso.getText().toString().toUpperCase(),
-                            etReverso.getText().toString().toUpperCase());
+                            etReverso.getText().toString().toUpperCase(), etVenda.getText().toString().toUpperCase());
 
                 }
                 if (acao.equals("del"))
@@ -207,7 +209,7 @@ public class ZInfoDB {
                             etTipo.getText().toString(), etQualidade.getText().toString().toUpperCase(),
                             etMaterial.getText().toString().toUpperCase(), etDiametro.getText().toString().toUpperCase(),
                             etDetalhe.getText().toString().toUpperCase(), etAnverso.getText().toString().toUpperCase(),
-                            etReverso.getText().toString().toUpperCase(), tvi.getText().toString().toUpperCase());
+                            etReverso.getText().toString().toUpperCase(), etVenda.getText().toString().toUpperCase(), tvi.getText().toString().toUpperCase());
                 }
                 dialog.cancel();
                 activity.recreate();
@@ -252,6 +254,7 @@ public class ZInfoDB {
             final EditText etDetalhe = dialog.findViewById(R.id.etDetalhe);
             final EditText etAnverso = dialog.findViewById(R.id.etAnverso);
             final EditText etReverso = dialog.findViewById(R.id.etReverso);
+            final EditText etVenda = dialog.findViewById(R.id.etVenda);
             final TextView tvdatacadastro = dialog.findViewById(R.id.tv_datacadastro);
 
             while (cursor.moveToNext()) {
@@ -267,6 +270,7 @@ public class ZInfoDB {
                 etDetalhe.setText(cursor.getString(cursor.getColumnIndex(DETALHE)));
                 etAnverso.setText(cursor.getString(cursor.getColumnIndex(ANVERSO)));
                 etReverso.setText(cursor.getString(cursor.getColumnIndex(REVERSO)));
+                etVenda.setText(cursor.getString(cursor.getColumnIndex(VALOR_VENDA)));
                 tvi.setText(cursor.getString(cursor.getColumnIndex(ID)));
                 tvdatacadastro.setText(cursor.getString(cursor.getColumnIndex(DATACADASTRO)));
             }
@@ -293,7 +297,7 @@ public class ZInfoDB {
                 adapterLista = new SimpleCursorAdapter(activity, R.layout.tela_listagem_itens, cursor,
                         new String[]{TIPO, PAIS, ANO, KRAUSE, VALOR, MOEDA, ID, DIAMETRO, MATERIAL, ANVERSO, REVERSO},
                         new int[]{R.id.tvTipo, R.id.tvPais, R.id.tvAno, R.id.tvKrause, R.id.tvValor, R.id.tvMoeda,
-                                R.id.tvId, R.id.tvDiametro, R.id.tvMaterial, R.id.tvAnverso, R.id.tvReverso});
+                                R.id.tvId, R.id.tvDiametro, R.id.tvMaterial, R.id.tvAnverso, R.id.tvReverso, R.id.tvVenda});
                 MostraDados.setAdapter(adapterLista);
             } else {
                 zutilitarios.toast(activity, "Não existem dados a exibir: ");
@@ -337,7 +341,7 @@ public class ZInfoDB {
             adapterLista = new SimpleCursorAdapter(activity, R.layout.tela_listagem_itens, cursor,
                     new String[]{TIPO, PAIS, ANO, KRAUSE, VALOR, MOEDA, ID, DIAMETRO, MATERIAL, ANVERSO, REVERSO},
                     new int[]{R.id.tvTipo, R.id.tvPais, R.id.tvAno, R.id.tvKrause, R.id.tvValor, R.id.tvMoeda,
-                            R.id.tvId, R.id.tvDiametro, R.id.tvMaterial, R.id.tvAnverso, R.id.tvReverso});
+                            R.id.tvId, R.id.tvDiametro, R.id.tvMaterial, R.id.tvAnverso, R.id.tvReverso,R.id.tvVenda});
             MostraDados.setAdapter(adapterLista);
         } else {
             zutilitarios.toast(activity, "Não existem dados a exibir: pais="+pais);
@@ -389,7 +393,7 @@ public class ZInfoDB {
             adapterLista = new SimpleCursorAdapter(activity, R.layout.tela_listagem_pesquisa, cursor,
                     new String[]{TIPO, PAIS, ANO, KRAUSE, VALOR, MOEDA, ID, MATERIAL},
                     new int[]{R.id.tvTipo, R.id.tvPais, R.id.tvAno, R.id.tvKrause, R.id.tvValor, R.id.tvMoeda,
-                            R.id.tvId, R.id.tvMaterial});
+                            R.id.tvId, R.id.tvMaterial,R.id.tvVenda});
             MostraDados.setAdapter(adapterLista); // executa a ação
         } else {
             zutilitarios.toast(activity, "Não existem dados a exibir: ");
@@ -435,7 +439,7 @@ public class ZInfoDB {
             adapterLista = new SimpleCursorAdapter(activity, R.layout.tela_listagem_itens, cursor,
                     new String[]{TIPO, PAIS, ANO, KRAUSE, VALOR, MOEDA, ID, DIAMETRO, MATERIAL, ANVERSO, REVERSO},
                     new int[]{R.id.tvTipo, R.id.tvPais, R.id.tvAno, R.id.tvKrause, R.id.tvValor, R.id.tvMoeda,
-                            R.id.tvId, R.id.tvDiametro, R.id.tvMaterial, R.id.tvAnverso, R.id.tvReverso});
+                            R.id.tvId, R.id.tvDiametro, R.id.tvMaterial, R.id.tvAnverso, R.id.tvReverso, R.id.tvVenda});
             MostraDados.setAdapter(adapterLista); // executa a ação
         } else {
             zutilitarios.toast(activity, "Não existem dados a exibir: ");
@@ -475,7 +479,7 @@ public class ZInfoDB {
 
     public void insert(Activity activity, String tabela, String pais, String ano, String krause, String valor,
                        String moeda, String tipo, String qualidade, String material, String diametro, String detalhe,
-                       String anverso, String reverso) {
+                       String anverso, String reverso,String venda) {
         Date date = new Date();
         String data = DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
         String Aano = "0", Ttipo = "Moeda";
@@ -501,6 +505,7 @@ public class ZInfoDB {
                 contentValuesCampos.put(DETALHE, detalhe);
                 contentValuesCampos.put(ANVERSO, anverso);
                 contentValuesCampos.put(REVERSO, reverso);
+                contentValuesCampos.put(VALOR_VENDA, venda);
                 contentValuesCampos.put(DATACADASTRO, data);
                 bancoDados.insert(tabela, null, contentValuesCampos);
                 zutilitarios.toast(activity, "Cadastro ok!");
@@ -555,7 +560,7 @@ public class ZInfoDB {
 
     public void atualiza(Activity activity, String tabela, String pais, String ano, String krause, String valor,
                          String moeda, String tipo, String qualidade, String material, String diametro, String detalhe,
-                         String anverso, String reverso, String id) {
+                         String anverso, String reverso, String venda, String id) {
         String Aano = "0", Ttipo = "Moeda";
         if (!ano.equals("")) Aano = ano;
         if (!tipo.equals("")) Ttipo = tipo;
@@ -581,6 +586,7 @@ public class ZInfoDB {
                 contentValuesCampos.put(DETALHE, detalhe);
                 contentValuesCampos.put(ANVERSO, anverso);
                 contentValuesCampos.put(REVERSO, reverso);
+                contentValuesCampos.put(VALOR_VENDA, venda);
                 bancoDados.update(tabela, contentValuesCampos, texto, null);
 
                 notificacao.createNotification(activity,"Parabens!!!","Item atualizado: "+ano+" "+pais+"-"+valor+" "+moeda+"\n Faça o backup da coleção.");
@@ -624,6 +630,12 @@ public class ZInfoDB {
 
     }
 
+    public void valorTotal(Activity activity){
+        AbreBanco(activity);
+        cursor = bancoDados.rawQuery("SELECT SUM(venda) FROM Colecao",null);
+
+    }
+
 
     public void ExportaTXT(Activity activity) {
 
@@ -648,6 +660,7 @@ public class ZInfoDB {
                     + cc.getString(cc.getColumnIndex(DETALHE)) + "','"
                     + cc.getString(cc.getColumnIndex(ANVERSO)) + "','"
                     + cc.getString(cc.getColumnIndex(REVERSO)) + "','"
+                    + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + "','"
                     + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "'),; \n";
             contagem++;
         }
@@ -701,6 +714,7 @@ public class ZInfoDB {
                     + cc.getString(cc.getColumnIndex(DETALHE)) + ","
                     + cc.getString(cc.getColumnIndex(ANVERSO)) + ","
                     + cc.getString(cc.getColumnIndex(REVERSO)) + ","
+                    + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + "','"
                     + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "; \n";
             contagem++;
         }
@@ -708,7 +722,7 @@ public class ZInfoDB {
 
         ValoresNotas = "";
         ValoresNotas += PAIS + "," + ANO + "," + KRAUSE + "," + VALOR + "," + MOEDA + "," + TIPO + "," + QUALIDADE + ","
-                + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + DATACADASTRO + "; \n";
+                + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + "," + VALOR_VENDA + "," + DATACADASTRO + "; \n";
         while (cc1.moveToNext()) {
             ValoresNotas += cc1.getString(cc1.getColumnIndex(PAIS)) + ","
                     + cc1.getString(cc1.getColumnIndex(ANO)) + ","
@@ -722,6 +736,7 @@ public class ZInfoDB {
                     + cc1.getString(cc1.getColumnIndex(DETALHE)) + ","
                     + cc1.getString(cc1.getColumnIndex(ANVERSO)) + ","
                     + cc1.getString(cc1.getColumnIndex(REVERSO)) + ","
+                    + cc1.getString(cc1.getColumnIndex(VALOR_VENDA)) + ","
                     + cc1.getString(cc1.getColumnIndex(DATACADASTRO)) + "; \n";
             contagem++;
         }

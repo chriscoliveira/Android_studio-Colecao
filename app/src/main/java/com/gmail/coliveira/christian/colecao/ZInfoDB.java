@@ -646,7 +646,7 @@ public class ZInfoDB {
         while (cc.moveToNext()) {
             Valores += "INSERT INTO " + NOME_TABELA + " (" + PAIS + "," + ANO + "," + KRAUSE + "," + VALOR + "," + MOEDA
                     + "," + TIPO + "," + QUALIDADE + "," + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO
-                    + "," + REVERSO + "," + DATACADASTRO + ") VALUES ('";
+                    + "," + REVERSO + "," + VALOR_VENDA + "," + DATACADASTRO + ") VALUES ('";
 
             Valores += cc.getString(cc.getColumnIndex(PAIS)) + "',"
                     + cc.getString(cc.getColumnIndex(ANO)) + ",'"
@@ -661,7 +661,7 @@ public class ZInfoDB {
                     + cc.getString(cc.getColumnIndex(ANVERSO)) + "','"
                     + cc.getString(cc.getColumnIndex(REVERSO)) + "','"
                     + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + "','"
-                    + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "'),; \n";
+                    + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "'); \n";
             contagem++;
         }
 
@@ -700,7 +700,7 @@ public class ZInfoDB {
         zutilitarios.toast(activity, "Exportando..");
         ValoresMoedas = "";
         ValoresMoedas += PAIS + "," + ANO + "," + KRAUSE + "," + VALOR + "," + MOEDA + "," + TIPO + "," + QUALIDADE
-                + "," + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + DATACADASTRO + "; \n";
+                + "," + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + VALOR_VENDA + "," + DATACADASTRO + "; \n";
         while (cc.moveToNext()) {
             ValoresMoedas += cc.getString(cc.getColumnIndex(PAIS)) + ","
                     + cc.getString(cc.getColumnIndex(ANO)) + ","
@@ -714,7 +714,7 @@ public class ZInfoDB {
                     + cc.getString(cc.getColumnIndex(DETALHE)) + ","
                     + cc.getString(cc.getColumnIndex(ANVERSO)) + ","
                     + cc.getString(cc.getColumnIndex(REVERSO)) + ","
-                    + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + "','"
+                    + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + ","
                     + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "; \n";
             contagem++;
         }

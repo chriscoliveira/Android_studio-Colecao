@@ -22,6 +22,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.v7.util.SortedList;
 import android.util.Log;
@@ -31,19 +33,24 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.coliveira.christian.colecao.services.Notificacao;
+import com.squareup.picasso.Picasso;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,6 +80,9 @@ public class ZInfoDB {
     public static String QUALIDADE = "qualidade";
     public static String VALOR_VENDA = "valor_venda";
     public static String DATACADASTRO = "datacadastro";
+    public static String IMAGEM1 = "imagem1";
+    public static String IMAGEM2 = "imagem2";
+
     public ZUtilitarios zutilitarios = new ZUtilitarios();
     public Dialog dialog = null;
     public Button btAcaoDialog, btApagar;
@@ -90,7 +100,7 @@ public class ZInfoDB {
         String criaTabela = "CREATE TABLE IF NOT EXISTS " + NOME_TABELA + "(" + ID + " INTEGER PRIMARY KEY, " + PAIS
                 + " TEXT, " + ANO + " INTEGER, " + KRAUSE + " TEXT," + VALOR + " TEXT, " + MOEDA + " TEXT," + TIPO
                 + " TEXT," + QUALIDADE + " TEXT," + MATERIAL + " TEXT," + DIAMETRO + " TEXT," + DETALHE + " TEXT,"
-                + ANVERSO + " TEXT," + REVERSO + " TEXT," + VALOR_VENDA + " REAL," + DATACADASTRO + " TEXT" + ")";
+                + ANVERSO + " TEXT," + REVERSO + " TEXT," + VALOR_VENDA + " REAL," + DATACADASTRO + " TEXT," + IMAGEM1 + " TEXT," + IMAGEM2 + " TEXT" + ")";
 
         String criaTabelaModificao = "CREATE TABLE IF NOT EXISTS "+BANCO_MOD+"("+MODIFICA+" TXT)";
 
@@ -121,7 +131,7 @@ public class ZInfoDB {
         dialog.setCanceledOnTouchOutside(false);
 
         String[] TIPOITEM = new String[]{"Moeda", "Nota"};
-        String[] TODOSPAISES = new String[]{"Acores", "Afeganistao", "Africa Central Beac", "Africa Do Sul", "Africa Equatorial Francesa", "Africa Occidental", "Africa Ocidental Britanica", "Africa Ocidental Francesa", "Africa Oriental Alema", "Africa Oriental Britanica", "Albania", "Alderney", "Alemanha", "Alemanha Gdr", "Alemanha Terceiro Reich", "Andorra", "Angola", "Anguilla", "Antigua E Barbuda", "Antilhas Holandesas", "Arabia Do Sul", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijao", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgica", "Belize", "Benin", "Bermudas", "Biafra", "Birmania", "Boemia E Moravia", "Bolivia", "Borneu Do Norte", "Bosnia Herzegovina", "Botsuana", "Brasil", "Brunei", "Bulgaria", "Burquina Faso", "Burundi", "Butao", "Cabo Verde", "Camaroes", "Cambodja", "Canada", "Cazaquistao", "Ceilao", "Chade", "Chile", "China", "China Japones", "China Republica", "Chipre", "Cidade Do Vaticano", "Cidade Livre De Danzig", "Cochinchina Francesa", "Colombia", "Comores", "Congo", "Congo Belga", "Congo Rdc", "Coreia Do Norte", "Coreia Do Sul", "Costa Do Marfim", "Costa Rica", "Cracovia", "Creta", "Croacia", "Cuba", "Curacao", "Dinamarca", "Djibouti", "Dominica", "Dominio De Terra Nova", "Egito", "El Salvador", "Emirados Arabes Unidos", "Equador", "Eritreia", "Eslovaquia", "Eslovenia", "Espanha", "Espanha Guerra Civil", "Estabelecimentos Dos Estreitos", "Estado Livre Do Congo", "Estados Da Africa Equatorial", "Estados Do Caribe Oriental", "Estados Papais", "Estonia", "Etiopia", "Eua", "Fiji", "Filipinas", "Finlandia", "Franca", "Frances Dos Afars E Issas", "Gabao", "Gambia", "Gana", "Georgia", "Georgia Do Sul", "Gibraltar", "Granada", "Grecia", "Groenlandia", "Guatemala", "Guernsey", "Guiana", "Guiana Britanica", "Guine", "Guine-Bissau", "Guine Equatorial", "Haiti", "Hiderabade", "Holanda", "Honduras", "Honduras Britanicas", "Hong Kong", "Hungria", "Iemen", "Iemen Do Sul", "Ilha De Ascensao", "Ilha De Man", "Ilhas Cayman", "Ilhas Cook", "Ilhas Falklands", "Ilhas Faroe", "Ilhas Marshall", "Ilhas Pitcairn", "Ilhas Salomao", "Ilhas Turcas E Caicos", "Ilhas Virgens Britanicas", "Imperio Alemao", "Imperio Otomano", "India", "India Britanica", "India Portuguesa", "Indias Orientais Neerlandesas", "Indochina Francesa", "Indonesia", "Ira", "Iraque", "Irlanda", "Islandia", "Israel", "Italia", "Iugoslavia", "Jamaica", "Japao", "Jersey", "Jordania", "Katanga", "Kiribati", "Kuwait", "Laos", "Lesoto", "Letonia", "Libano", "Liberia", "Libia", "Liechtenstein", "Lituania", "Lombardo-Veneto", "Luxemburgo", "Macau", "Macedonia", "Madagascar", "Malasia", "Malasia Peninsular", "Malasia Peninsular E Borneu Britanico", "Malawi", "Maldivas", "Mali", "Malta", "Marrocos", "Mauricias", "Mauritania", "Mexico", "Mocambique", "Moldavia", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Nagorno-Karabakh", "Namibia", "Nauru", "Nepal", "Nicaragua", "Niger", "Nigeria", "Niue", "Noruega", "Nova Caledonia", "Nova Guine", "Nova Guine Alema", "Novas Hebridas", "Nova Zelandia", "Oceania Francesa", "Oman", "Ordem De Malta", "Palau", "Palestina", "Panama", "Papua Nova Guine", "Paquistao", "Paraguai", "Peru", "Polinesia Francesa", "Polonia", "Portugal", "Qatar", "Qatar E Dubai", "Quenia", "Quirguistao", "Reino Unido", "Republica Centro-Africana", "Republica Checa", "Republica Dominicana", "Republica Sul-Africana", "Reuniao", "Rodesia", "Rodesia Do Sul", "Rodesia E Niassalandia", "Romenia", "Ruanda", "Ruanda-Burundi", "Ruanda-Urundi", "Russia", "Saara Ocidental", "Samoa", "San Marino", "Santa Helena", "Santa Helena E Ascensao", "Santa Lucia", "Sao Cristovao E Nevis", "Sao Pedro E Miquelao", "Sao Tome E Principe", "Sao Vicente E Granadinas", "Sarawak", "Sarre", "Seicheles", "Senegal", "Serra Leoa", "Servia", "Singapura", "Siria", "Somalia", "Somalia Italiana", "Somalilandia", "Somalilandia Francesa", "Spitsbergen", "Sri Lanka", "Suazilandia", "Sudao", "Sudao Do Sul", "Suecia", "Suica", "Suriname", "Tailandia", "Taiwan", "Tajiquistao", "Tanzania", "Tchecoslovaquia", "Territorio Antartico Britanico", "Territorio Britanico Do Oceano Indico", "Timor Leste", "Timor Portugues", "Togo", "Tokelau", "Tonga", "Transnistria", "Trinidad E Tobago", "Tristao Da Cunha", "Tunisia", "Turquemenistao", "Turquia", "Tuva", "Tuvalu", "Ucrania", "Uganda", "Uniao Sovietica", "Uruguai", "Uzbequistao", "Vanuatu", "Venezuela", "Vietnam", "Vietnam Do Sul", "Zaire", "Zambia", "Zanzibar", "Zimbabue"};
+        String[] TODOSPAISES = new String[]{"Acores", "Afeganistao", "Africa Central Beac", "Africa Do Sul", "Africa Equatorial Francesa", "Africa Occidental", "Africa Ocidental Britanica", "Africa Ocidental Francesa", "Africa Oriental Alema", "Africa Oriental Britanica", "Albania", "Alderney", "Alemanha", "Alemanha Gdr", "Alemanha Terceiro Reich", "Andorra", "Angola", "Anguilla", "Antigua E Barbuda", "Antilhas Holandesas", "Arabia Do Sul", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijao", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgica", "Belize", "Benin", "Bermudas", "Biafra", "Birmania", "Boemia E Moravia", "Bolivia", "Borneu Do Norte", "Bosnia Herzegovina", "Botsuana", "Brasil", "Brunei", "Bulgaria", "Burquina Faso", "Burundi", "Butao", "Cabo Verde", "Camaroes", "Cambodja", "Canada", "Cazaquistao", "Ceilao", "Chade", "Chile", "China", "China Japones", "China Republica", "Chipre", "Cidade Do Vaticano", "Cidade Livre De Danzig", "Cochinchina Francesa", "Colombia", "Comores", "Congo", "Congo Belga", "Congo Rdc", "Coreia Do Norte", "Coreia Do Sul", "Costa Do Marfim", "Costa Rica", "Cracovia", "Creta", "Croacia", "Cuba", "Curacao", "Dinamarca", "Djibouti", "Dominica", "Dominio De Terra Nova", "Egito", "El Salvador", "Emirados Arabes Unidos", "Equador", "Eritreia", "Eslovaquia", "Eslovenia", "Espanha", "Espanha Guerra Civil", "Estabelecimentos Dos Estreitos", "Estado Livre Do Congo", "Estados Da Africa Equatorial", "Estados Do Caribe Oriental", "Estados Papais", "Estonia", "Etiopia", "Estados Unidos da America", "Fiji", "Filipinas", "Finlandia", "Franca", "Frances Dos Afars E Issas", "Gabao", "Gambia", "Gana", "Georgia", "Georgia Do Sul", "Gibraltar", "Granada", "Grecia", "Groenlandia", "Guatemala", "Guernsey", "Guiana", "Guiana Britanica", "Guine", "Guine-Bissau", "Guine Equatorial", "Haiti", "Hiderabade", "Holanda", "Honduras", "Honduras Britanicas", "Hong Kong", "Hungria", "Iemen", "Iemen Do Sul", "Ilha De Ascensao", "Ilha De Man", "Ilhas Cayman", "Ilhas Cook", "Ilhas Falklands", "Ilhas Faroe", "Ilhas Marshall", "Ilhas Pitcairn", "Ilhas Salomao", "Ilhas Turcas E Caicos", "Ilhas Virgens Britanicas", "Imperio Alemao", "Imperio Otomano", "India", "India Britanica", "India Portuguesa", "Indias Orientais Neerlandesas", "Indochina Francesa", "Indonesia", "Ira", "Iraque", "Irlanda", "Islandia", "Israel", "Italia", "Iugoslavia", "Jamaica", "Japao", "Jersey", "Jordania", "Katanga", "Kiribati", "Kuwait", "Laos", "Lesoto", "Letonia", "Libano", "Liberia", "Libia", "Liechtenstein", "Lituania", "Lombardo-Veneto", "Luxemburgo", "Macau", "Macedonia", "Madagascar", "Malasia", "Malasia Peninsular", "Malasia Peninsular E Borneu Britanico", "Malawi", "Maldivas", "Mali", "Malta", "Marrocos", "Mauricias", "Mauritania", "Mexico", "Mocambique", "Moldavia", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Nagorno-Karabakh", "Namibia", "Nauru", "Nepal", "Nicaragua", "Niger", "Nigeria", "Niue", "Noruega", "Nova Caledonia", "Nova Guine", "Nova Guine Alema", "Novas Hebridas", "Nova Zelandia", "Oceania Francesa", "Oman", "Ordem De Malta", "Palau", "Palestina", "Panama", "Papua Nova Guine", "Paquistao", "Paraguai", "Peru", "Polinesia Francesa", "Polonia", "Portugal", "Qatar", "Qatar E Dubai", "Quenia", "Quirguistao", "Reino Unido", "Republica Centro-Africana", "Republica Checa", "Republica Dominicana", "Republica Sul-Africana", "Reuniao", "Rodesia", "Rodesia Do Sul", "Rodesia E Niassalandia", "Romenia", "Ruanda", "Ruanda-Burundi", "Ruanda-Urundi", "Russia", "Saara Ocidental", "Samoa", "San Marino", "Santa Helena", "Santa Helena E Ascensao", "Santa Lucia", "Sao Cristovao E Nevis", "Sao Pedro E Miquelao", "Sao Tome E Principe", "Sao Vicente E Granadinas", "Sarawak", "Sarre", "Seicheles", "Senegal", "Serra Leoa", "Servia", "Singapura", "Siria", "Somalia", "Somalia Italiana", "Somalilandia", "Somalilandia Francesa", "Spitsbergen", "Sri Lanka", "Suazilandia", "Sudao", "Sudao Do Sul", "Suecia", "Suica", "Suriname", "Tailandia", "Taiwan", "Tajiquistao", "Tanzania", "Tchecoslovaquia", "Territorio Antartico Britanico", "Territorio Britanico Do Oceano Indico", "Timor Leste", "Timor Portugues", "Togo", "Tokelau", "Tonga", "Transnistria", "Trinidad E Tobago", "Tristao Da Cunha", "Tunisia", "Turquemenistao", "Turquia", "Tuva", "Tuvalu", "Ucrania", "Uganda", "Uniao Sovietica", "Uruguai", "Uzbequistao", "Vanuatu", "Venezuela", "Vietnam", "Vietnam Do Sul", "Zaire", "Zambia", "Zanzibar", "Zimbabue"};
         String[] TODOSMATERIAIS = new String[]{"ACO", "ACO BRONZE", "ACO COBRE", "ACO COBRE NIQUEL", "ACO INOX", "ACO LATAO", "ACO NIQUEL", "ALUMINIO", "ALUMINIO BRONZE", "ALUMINIO COBRE NIQUEL", "ALUMINIO NIQUEL BRONZE", "BI METALICA", "BRONZE", "BRONZE ACO", "BRONZE NIQUEL", "COBRE", "COBRE ACO", "COBRE CUPRO NIQUEL", "COBRE FERRO", "COBRE LATAO", "COBRE NIQUEL", "COBRE NIQUEL ZINCO", "COBRE ZINCO", "COBRE ZINCO MAGNESIO NIQUEL", "COBRE ZINCO NIQUEL", "FERRO NIQUEL", "INOX", "LATAO", "LATAO ACO", "LATAO CUPRO NIQUEL", "LATAO DE ACO REVESTIDO", "LATAO REVESTIDO DE ACO", "MANGANES LATAO", "NIQUEL", "NIQUEL ACO", "NIQUEL BRONZE", "NIQUEL LATAO", "PAPEL", "PAPEL BAMBU", "POLIMERO", "PRATA", "OURO"
         };
         String[] CLASSIFICACAO = new String[]{"BNC", "FC", "FE", "SOB", "BELA", "MBC", "BC", "REG", "UTG", "REPOR"};
@@ -156,6 +166,8 @@ public class ZInfoDB {
         final EditText etAnverso = dialog.findViewById(R.id.etAnverso);
         final EditText etReverso = dialog.findViewById(R.id.etReverso);
         final EditText etVenda = dialog.findViewById(R.id.etVenda);
+        final EditText etfoto1 = dialog.findViewById(R.id.etfoto1);
+        final EditText etfoto2 = dialog.findViewById(R.id.etfoto2);
 
         etPais.setAdapter(adapterPais);
         etTipo.setAdapter(adapterTipo);
@@ -198,7 +210,7 @@ public class ZInfoDB {
                             etTipo.getText().toString(), etQualidade.getText().toString().toUpperCase(),
                             etMaterial.getText().toString().toUpperCase(), etDiametro.getText().toString().toUpperCase(),
                             etDetalhe.getText().toString().toUpperCase(), etAnverso.getText().toString().toUpperCase(),
-                            etReverso.getText().toString().toUpperCase(), etVenda.getText().toString().toUpperCase());
+                            etReverso.getText().toString().toUpperCase(), etVenda.getText().toString().toUpperCase(), etfoto1.getText().toString(), etfoto2.getText().toString());
 
                 }
                 if (acao.equals("del"))
@@ -209,7 +221,7 @@ public class ZInfoDB {
                             etTipo.getText().toString(), etQualidade.getText().toString().toUpperCase(),
                             etMaterial.getText().toString().toUpperCase(), etDiametro.getText().toString().toUpperCase(),
                             etDetalhe.getText().toString().toUpperCase(), etAnverso.getText().toString().toUpperCase(),
-                            etReverso.getText().toString().toUpperCase(), etVenda.getText().toString().toUpperCase(), tvi.getText().toString().toUpperCase());
+                            etReverso.getText().toString().toUpperCase(), etVenda.getText().toString().toUpperCase(), etfoto1.getText().toString(), etfoto2.getText().toString(), tvi.getText().toString().toUpperCase());
                 }
                 dialog.cancel();
                 activity.recreate();
@@ -239,6 +251,17 @@ public class ZInfoDB {
 
     public void enviaDadosDialog(Activity activity, String tabela, int Posicao) {
         try {
+            ///
+            ImageView foto1,foto2;
+            EditText link1,link2;
+            Bitmap b = null;
+
+            foto1 = dialog.findViewById(R.id.imgfoto1);
+            foto2 = dialog.findViewById(R.id.imgfoto2);
+            link1 = dialog.findViewById(R.id.etfoto1);
+            link2 = dialog.findViewById(R.id.etfoto2);
+            //
+
             AbreBanco(activity);
             cursor = bancoDados.query(tabela, null, ID + "=" + Posicao, null, null, null, null);
             final TextView tvi = dialog.findViewById(R.id.tvi);
@@ -256,6 +279,8 @@ public class ZInfoDB {
             final EditText etReverso = dialog.findViewById(R.id.etReverso);
             final EditText etVenda = dialog.findViewById(R.id.etVenda);
             final TextView tvdatacadastro = dialog.findViewById(R.id.tv_datacadastro);
+            final EditText etfoto1 = dialog.findViewById(R.id.etfoto1);
+            final EditText etfoto2 = dialog.findViewById(R.id.etfoto2);
 
             while (cursor.moveToNext()) {
                 etPais.setText(cursor.getString(cursor.getColumnIndex(PAIS)));
@@ -271,10 +296,23 @@ public class ZInfoDB {
                 etAnverso.setText(cursor.getString(cursor.getColumnIndex(ANVERSO)));
                 etReverso.setText(cursor.getString(cursor.getColumnIndex(REVERSO)));
                 etVenda.setText(cursor.getString(cursor.getColumnIndex(VALOR_VENDA)));
+                etfoto1.setText(cursor.getString(cursor.getColumnIndex(IMAGEM1)));
+                etfoto2.setText(cursor.getString(cursor.getColumnIndex(IMAGEM2)));
                 tvi.setText(cursor.getString(cursor.getColumnIndex(ID)));
                 tvdatacadastro.setText(cursor.getString(cursor.getColumnIndex(DATACADASTRO)));
             }
 
+            //
+            //String url = "https://i.ucoin.net/coin/11/747/11747933-2s/south_africa-2-cents-1971.jpg";
+            try
+            {
+                Picasso.get().load(etfoto1.getText().toString()).into(foto1);
+                foto1.setVisibility(View.VISIBLE);
+                Picasso.get().load(etfoto2.getText().toString()).into(foto2);
+                foto2.setVisibility(View.VISIBLE);
+            } catch(Exception e){}
+            //foto1.setImageBitmap(b);
+            //
             FechaBanco();
 
         } catch (Exception er) {
@@ -479,7 +517,7 @@ public class ZInfoDB {
 
     public void insert(Activity activity, String tabela, String pais, String ano, String krause, String valor,
                        String moeda, String tipo, String qualidade, String material, String diametro, String detalhe,
-                       String anverso, String reverso,String venda) {
+                       String anverso, String reverso,String venda,String foto1,String foto2) {
         Date date = new Date();
         String data = DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
         String Aano = "0", Ttipo = "Moeda";
@@ -506,6 +544,8 @@ public class ZInfoDB {
                 contentValuesCampos.put(ANVERSO, anverso);
                 contentValuesCampos.put(REVERSO, reverso);
                 contentValuesCampos.put(VALOR_VENDA, venda);
+                contentValuesCampos.put(IMAGEM1, foto1);
+                contentValuesCampos.put(IMAGEM2, foto2);
                 contentValuesCampos.put(DATACADASTRO, data);
                 bancoDados.insert(tabela, null, contentValuesCampos);
                 zutilitarios.toast(activity, "Cadastro ok!");
@@ -560,7 +600,7 @@ public class ZInfoDB {
 
     public void atualiza(Activity activity, String tabela, String pais, String ano, String krause, String valor,
                          String moeda, String tipo, String qualidade, String material, String diametro, String detalhe,
-                         String anverso, String reverso, String venda, String id) {
+                         String anverso, String reverso, String venda,String foto1, String foto2, String id) {
         String Aano = "0", Ttipo = "Moeda";
         if (!ano.equals("")) Aano = ano;
         if (!tipo.equals("")) Ttipo = tipo;
@@ -587,6 +627,8 @@ public class ZInfoDB {
                 contentValuesCampos.put(ANVERSO, anverso);
                 contentValuesCampos.put(REVERSO, reverso);
                 contentValuesCampos.put(VALOR_VENDA, venda);
+                contentValuesCampos.put(IMAGEM1, foto1);
+                contentValuesCampos.put(IMAGEM2, foto2);
                 bancoDados.update(tabela, contentValuesCampos, texto, null);
 
                 notificacao.createNotification(activity,"Parabens!!!","Item atualizado: "+ano+" "+pais+"-"+valor+" "+moeda+"\n Faça o backup da coleção.");
@@ -646,7 +688,7 @@ public class ZInfoDB {
         while (cc.moveToNext()) {
             Valores += "INSERT INTO " + NOME_TABELA + " (" + PAIS + "," + ANO + "," + KRAUSE + "," + VALOR + "," + MOEDA
                     + "," + TIPO + "," + QUALIDADE + "," + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO
-                    + "," + REVERSO + "," + VALOR_VENDA + "," + DATACADASTRO + ") VALUES ('";
+                    + "," + REVERSO + "," + VALOR_VENDA + "," + DATACADASTRO + "," + IMAGEM1 + "," + IMAGEM2 + ") VALUES ('";
 
             Valores += cc.getString(cc.getColumnIndex(PAIS)) + "',"
                     + cc.getString(cc.getColumnIndex(ANO)) + ",'"
@@ -661,7 +703,9 @@ public class ZInfoDB {
                     + cc.getString(cc.getColumnIndex(ANVERSO)) + "','"
                     + cc.getString(cc.getColumnIndex(REVERSO)) + "','"
                     + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + "','"
-                    + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "'); \n";
+                    + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "','"
+                    + cc.getString(cc.getColumnIndex(IMAGEM1)) + "','"
+                    + cc.getString(cc.getColumnIndex(IMAGEM2)) + "'); \n";
             contagem++;
         }
 
@@ -700,7 +744,7 @@ public class ZInfoDB {
         zutilitarios.toast(activity, "Exportando..");
         ValoresMoedas = "";
         ValoresMoedas += PAIS + "," + ANO + "," + KRAUSE + "," + VALOR + "," + MOEDA + "," + TIPO + "," + QUALIDADE
-                + "," + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + VALOR_VENDA + "," + DATACADASTRO + "; \n";
+                + "," + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + VALOR_VENDA + "," + DATACADASTRO  + "," + IMAGEM1  + "," + IMAGEM2 + "; \n";
         while (cc.moveToNext()) {
             ValoresMoedas += cc.getString(cc.getColumnIndex(PAIS)) + ","
                     + cc.getString(cc.getColumnIndex(ANO)) + ","
@@ -715,14 +759,16 @@ public class ZInfoDB {
                     + cc.getString(cc.getColumnIndex(ANVERSO)) + ","
                     + cc.getString(cc.getColumnIndex(REVERSO)) + ","
                     + cc.getString(cc.getColumnIndex(VALOR_VENDA)) + ","
-                    + cc.getString(cc.getColumnIndex(DATACADASTRO)) + "; \n";
+                    + cc.getString(cc.getColumnIndex(DATACADASTRO)) + ","
+                    + cc.getString(cc.getColumnIndex(IMAGEM1)) + ","
+                    + cc.getString(cc.getColumnIndex(IMAGEM2)) + "; \n";
             contagem++;
         }
         Cursor cc1 = bancoDados.query(NOME_TABELA, null, "tipo = 'Nota'", null, null, null, "pais asc");
 
         ValoresNotas = "";
         ValoresNotas += PAIS + "," + ANO + "," + KRAUSE + "," + VALOR + "," + MOEDA + "," + TIPO + "," + QUALIDADE + ","
-                + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + "," + VALOR_VENDA + "," + DATACADASTRO + "; \n";
+                + MATERIAL + "," + DIAMETRO + "," + DETALHE + "," + ANVERSO + "," + REVERSO + "," + "," + VALOR_VENDA + "," + DATACADASTRO  + "," + IMAGEM1  + "," + IMAGEM2  + "; \n";
         while (cc1.moveToNext()) {
             ValoresNotas += cc1.getString(cc1.getColumnIndex(PAIS)) + ","
                     + cc1.getString(cc1.getColumnIndex(ANO)) + ","
@@ -737,7 +783,9 @@ public class ZInfoDB {
                     + cc1.getString(cc1.getColumnIndex(ANVERSO)) + ","
                     + cc1.getString(cc1.getColumnIndex(REVERSO)) + ","
                     + cc1.getString(cc1.getColumnIndex(VALOR_VENDA)) + ","
-                    + cc1.getString(cc1.getColumnIndex(DATACADASTRO)) + "; \n";
+                    + cc1.getString(cc1.getColumnIndex(DATACADASTRO)) + ","
+                    + cc.getString(cc.getColumnIndex(IMAGEM1)) + ","
+                    + cc.getString(cc.getColumnIndex(IMAGEM2))  + "; \n";
             contagem++;
         }
 

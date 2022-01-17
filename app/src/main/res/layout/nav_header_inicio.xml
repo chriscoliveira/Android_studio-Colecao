@@ -18,7 +18,7 @@
         android:layout_height="80dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/ico2019" />
+        app:srcCompat="@drawable/ico22" />
 
     <TextView
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
         android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Versao 24072019"
+        android:text="Versao 17012022"
         android:textColor="#cccccc"
         android:textSize="9sp"
         android:textStyle="italic" />

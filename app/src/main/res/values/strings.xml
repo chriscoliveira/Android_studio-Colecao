@@ -2,12 +2,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Minha Colecao 2019</string>
+    <string name="nav_header_title">Minha Colecao 2022</string>
     <string name="nav_header_subtitle">christian.coliveira@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="vazio">CADASTRAR MOEDAS NACIONAIS</string>
-    <string name="appname">Minha Colecao</string>
+    <string name="appname">Minha Colecao de Notas e Moedas</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="titulo">Numismatica</string>

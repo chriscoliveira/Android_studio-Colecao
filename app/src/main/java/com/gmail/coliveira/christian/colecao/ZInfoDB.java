@@ -34,6 +34,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -281,6 +282,7 @@ public class ZInfoDB {
             final TextView tvdatacadastro = dialog.findViewById(R.id.tv_datacadastro);
             final EditText etfoto1 = dialog.findViewById(R.id.etfoto1);
             final EditText etfoto2 = dialog.findViewById(R.id.etfoto2);
+            final LinearLayout lfoto = dialog.findViewById(R.id.layout_foto);
 
             while (cursor.moveToNext()) {
                 etPais.setText(cursor.getString(cursor.getColumnIndex(PAIS)));
@@ -306,6 +308,7 @@ public class ZInfoDB {
             //String url = "https://i.ucoin.net/coin/11/747/11747933-2s/south_africa-2-cents-1971.jpg";
             try
             {
+
                 Picasso.get().load(etfoto1.getText().toString()).into(foto1);
                 foto1.setVisibility(View.VISIBLE);
                 Picasso.get().load(etfoto2.getText().toString()).into(foto2);
@@ -784,8 +787,8 @@ public class ZInfoDB {
                     + cc1.getString(cc1.getColumnIndex(REVERSO)) + ","
                     + cc1.getString(cc1.getColumnIndex(VALOR_VENDA)) + ","
                     + cc1.getString(cc1.getColumnIndex(DATACADASTRO)) + ","
-                    + cc.getString(cc.getColumnIndex(IMAGEM1)) + ","
-                    + cc.getString(cc.getColumnIndex(IMAGEM2))  + "; \n";
+                    + cc1.getString(cc1.getColumnIndex(IMAGEM1)) + ","
+                    + cc1.getString(cc1.getColumnIndex(IMAGEM2))  + "; \n";
             contagem++;
         }
 

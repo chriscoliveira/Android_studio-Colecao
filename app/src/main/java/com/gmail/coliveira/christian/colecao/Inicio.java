@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gmail.coliveira.christian.colecao.fragment.ConversorFragment;
@@ -45,6 +47,7 @@ import com.gmail.coliveira.christian.colecao.moedasenotas.Notas;
 import com.gmail.coliveira.christian.colecao.moedasenotas.NotasBr;
 import com.gmail.coliveira.christian.colecao.services.Notificacao;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -127,9 +130,24 @@ public class Inicio extends AppCompatActivity
         setTextColorForMenuItem(euro5, R.color.moedaestrangeira);
 
         navigationView.setNavigationItemSelectedListener(this);
+        final ImageView imagemapa;
+        imagemapa = findViewById(R.id.imageMapa);
+        try
+        {
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/minha-colecao-a01d5.appspot.com/o/screenshot.png?alt=media&token=fc75a270-1bc1-4d76-9ac7-0de547e7aa4e").into(imagemapa);
 
+        } catch(Exception e){}
 
+        imagemapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try
+                {
+                    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/minha-colecao-a01d5.appspot.com/o/screenshot.png?alt=media&token=fc75a270-1bc1-4d76-9ac7-0de547e7aa4e").into(imagemapa);
 
+                } catch(Exception e){}
+            }
+        });
 
         //exibe a versao de compilacao
         try {
